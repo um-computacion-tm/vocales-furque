@@ -6,11 +6,11 @@ def contar_vocales(mi_string):
     vocales = ('a', 'e', 'i', 'o', 'u')
     resultado = {}
     for letra in mi_string:
-        # if letra in 'aeiou':
-        if letra in vocales:
-            if letra not in resultado:
-                resultado[letra] = 0
-            resultado[letra] += 1
+        letra_sin_acento = letra.replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u')
+        if letra_sin_acento.lower() in vocales:
+            if letra_sin_acento.lower() not in resultado:
+                resultado[letra_sin_acento.lower()] = 0
+            resultado[letra_sin_acento.lower()] += 1
     return resultado
 
 
@@ -40,7 +40,7 @@ class TestContarVocales(unittest.TestCase):
         self.assertEqual(resultado, {'a': 3, 'o': 1})
 
     def test_contar_mUrciElago(self):
-        resultado = contar_vocales('mUrciElago')
+        resultado = contar_vocales('mUrciélago')
         self.assertEqual(resultado, {'a': 1, 'e': 1, 'i': 1, 'o': 1, 'u': 1})
 
 
